@@ -3,7 +3,7 @@ namespace BlazorStandaloneLib
 open Flatware
 
 type Msg =
-    | Increment
+    | Increment of n : int
 
 type Mdl = { count : int } with
     static member init = { count = 0 }
@@ -13,5 +13,5 @@ type MyComponent() =
 
     override this.Reduce(msg : Msg, mdl : Mdl) =
         match msg with
-            | Increment -> 
-                { mdl with count = mdl.count + 1 }
+            | Increment n -> 
+                { mdl with count = mdl.count + n }
