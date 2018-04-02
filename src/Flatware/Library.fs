@@ -11,14 +11,21 @@ type FlatwareContainer<'msg, 'mdl>(mdl : 'mdl) =
     let mutable mdl = mdl
     let onChangeEvent = new Event<unit>()
 
-    member this.Mdl with get() = mdl 
+    member this.Mdl 
+        with get() = mdl 
+        and private set(value) =
+            mdl <- value
+            onChangeEvent.Trigger()
 
     [<CLIEvent>]
     member this.OnChange = onChangeEvent.Publish
 
-    member this.UpdateMdl(newMdl) =
-        mdl <- newMdl
-        onChangeEvent.Trigger()
+    member this.DispatchAsync(reducer : _ -> Task<'mdl>) =
+        task {
+            let! newMdl = reducer()
+            this.Mdl <- newMdl
+            printfn "Updated state."
+        }
 
 [<AbstractClass>]
 type FlatwareComponent<'msg, 'mdl>() =
@@ -44,11 +51,7 @@ type FlatwareComponent<'msg, 'mdl>() =
     abstract member ReduceAsync : 'msg * 'mdl -> Task<'mdl>
 
     member this.DispatchAsync(msg) =
-        task {
-            let! newMdl = this.ReduceAsync(msg, this.F.Mdl)
-            this.F.UpdateMdl newMdl |> ignore
-            printfn "Updated state."
-        }
+        this.F.DispatchAsync(fun () -> this.ReduceAsync(msg, this.F.Mdl))
 
 [<Extension>]
 type ServiceCollectionExtensions =

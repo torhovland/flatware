@@ -30,11 +30,8 @@ type MyAppComponent() =
         task {
             match msg with
                 | Increment n -> 
-                    printfn "Loading weather ..."
-                    let! forecasts = this.Http.GetJsonAsync<WeatherForecast[]>("/sample-data/weather.json") |> Async.AwaitTask
-                    printfn "Done loading weather."
-                    return { mdl with Count = mdl.Count + n; Forecasts = Array.toList forecasts }
+                    return { mdl with Count = mdl.Count + n }
                 | LoadWeather -> 
-                    let! forecasts = this.Http.GetJsonAsync<WeatherForecast list>("/sample-data/weather.json") |> Async.AwaitTask
-                    return { mdl with Forecasts = forecasts }
+                    let! forecasts = this.Http.GetJsonAsync<WeatherForecast[]>("/sample-data/weather.json") |> Async.AwaitTask
+                    return { mdl with Forecasts = Array.toList forecasts }
         }
