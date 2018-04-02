@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Blazor.Browser.Rendering;
+﻿using System;
+using Microsoft.AspNetCore.Blazor.Browser.Rendering;
 using Microsoft.AspNetCore.Blazor.Browser.Services;
-using System;
+using Flatware;
+using BlazorStandaloneLib;
 
 namespace BlazorStandalone
 {
@@ -10,7 +12,7 @@ namespace BlazorStandalone
         {
             var serviceProvider = new BrowserServiceProvider(configure =>
             {
-                // Add any custom services here
+                configure.AddFlatware(Model.init);
             });
 
             new BrowserRenderer(serviceProvider).AddComponent<App>("app");
