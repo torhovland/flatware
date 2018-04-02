@@ -5,28 +5,48 @@ open System.Threading.Tasks
 open Microsoft.AspNetCore.Blazor.Components
 open Microsoft.Extensions.DependencyInjection
 open FSharp.Control.Tasks
+open System
 
 type FlatwareContainer<'msg, 'mdl>(mdl : 'mdl) =
-    member val mdl = mdl with get, set
+    let mutable mdl = mdl
+    let onChangeEvent = new Event<unit>()
+
+    member this.Mdl with get() = mdl 
+
+    [<CLIEvent>]
+    member this.OnChange = onChangeEvent.Publish
+
+    member this.UpdateMdl(newMdl) =
+        mdl <- newMdl
+        onChangeEvent.Trigger()
 
 [<AbstractClass>]
 type FlatwareComponent<'msg, 'mdl>() =
     inherit BlazorComponent()
 
     [<Inject>]
-    member val f = Unchecked.defaultof<FlatwareContainer<'msg, 'mdl>> with get, set
-
-    abstract member ReduceAsync : 'msg * 'mdl -> Task<'mdl>
+    member val F = Unchecked.defaultof<FlatwareContainer<'msg, 'mdl>> with get, set
 
     // Necessary due to FS0491
     member this.StateHasChanged() =
         base.StateHasChanged()
-        
+
+    member this.OnChangeHandler =
+        Handler<unit>(fun _ _ -> this.StateHasChanged())
+
+    override this.OnInit() =
+        this.F.add_OnChange this.OnChangeHandler
+        base.OnInit()
+    
+    member this.Dispose() =
+        this.F.remove_OnChange this.OnChangeHandler
+
+    abstract member ReduceAsync : 'msg * 'mdl -> Task<'mdl>
+
     member this.DispatchAsync(msg) =
         task {
-            let! newMdl = this.ReduceAsync(msg, this.f.mdl)
-            this.f.mdl <- newMdl
-            this.StateHasChanged()
+            let! newMdl = this.ReduceAsync(msg, this.F.Mdl)
+            this.F.UpdateMdl newMdl |> ignore
             printfn "Updated state."
         }
 
