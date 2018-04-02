@@ -1,14 +1,12 @@
 namespace BlazorStandaloneLib
 
-open System
-open Microsoft.AspNetCore.Blazor.Components
 open Flatware
-
-type Mdl = { count : int } with
-    static member init = { count = 0 }
 
 type Msg =
     | Increment
+
+type Mdl = { count : int } with
+    static member init = { count = 0 }
 
 type MyComponent() =
     inherit FlatwareComponent<Msg, Mdl>()
