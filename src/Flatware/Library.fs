@@ -1,8 +1,10 @@
 namespace Flatware
 
 open System.Runtime.CompilerServices
+open System.Threading.Tasks
 open Microsoft.AspNetCore.Blazor.Components
 open Microsoft.Extensions.DependencyInjection
+open FSharp.Control.Tasks
 
 type FlatwareContainer<'msg, 'mdl>(mdl : 'mdl) =
     member val mdl = mdl with get, set
@@ -14,11 +16,19 @@ type FlatwareComponent<'msg, 'mdl>() =
     [<Inject>]
     member val f = Unchecked.defaultof<FlatwareContainer<'msg, 'mdl>> with get, set
 
-    abstract member Reduce : 'msg * 'mdl -> 'mdl
+    abstract member ReduceAsync : 'msg * 'mdl -> Task<'mdl>
 
-    member this.Dispatch(msg) =
-        this.f.mdl <- this.Reduce(msg, this.f.mdl)
-        this.StateHasChanged()
+    // Necessary due to FS0491
+    member this.StateHasChanged() =
+        base.StateHasChanged()
+        
+    member this.DispatchAsync(msg) =
+        task {
+            let! newMdl = this.ReduceAsync(msg, this.f.mdl)
+            this.f.mdl <- newMdl
+            this.StateHasChanged()
+            printfn "Updated state."
+        }
 
 [<Extension>]
 type ServiceCollectionExtensions =

@@ -1,9 +1,9 @@
 ﻿@page "/counter"
-@inherits MyComponent
+@inherits MyAppComponent
 @using BlazorStandaloneLib
 
 <h1>Counter</h1>
 
 <p>Current count: @f.mdl.count</p>
 
-<button @onclick(() => this.Dispatch(Msg.NewIncrement(3)))>Click me</button>
+<button @onclick(() => this.DispatchAsync(Msg.NewIncrement(3)))>Click me</button>

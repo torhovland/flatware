@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.2.0-preview1-10155" />
+    <PackageReference Include="TaskBuilder.fs" Version="1.2.0-rc" />
   </ItemGroup>
   
   <ItemGroup>
