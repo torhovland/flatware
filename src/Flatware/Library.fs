@@ -5,7 +5,6 @@ open System.Threading.Tasks
 open Microsoft.AspNetCore.Blazor.Components
 open Microsoft.Extensions.DependencyInjection
 open FSharp.Control.Tasks
-open System
 
 type FlatwareContainer<'msg, 'mdl>(mdl : 'mdl) =
     let mutable mdl = mdl
