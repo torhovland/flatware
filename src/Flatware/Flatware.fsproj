@@ -2,11 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Flatware</PackageId>
+    <PackageVersion>0.0.1</PackageVersion>
+    <Authors>Tor Hovland</Authors>
+    <Description>Type-safe F# state management (like Elm and Redux) for Blazor.</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    <Copyright>Copyright 2018 (c) Tor Hovland. All rights reserved.</Copyright>
+    <PackageTags>blazor state redux elm fsharp</PackageTags>
+    <PackageProjectUrl>https://github.com/torhovland/flatware</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/torhovland/flatware</RepositoryUrl>
+    <LicenseUrl>https://github.com/torhovland/flatware/blob/master/LICENSE</LicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.2.0-preview1-10155" />
-    <PackageReference Include="TaskBuilder.fs" Version="1.2.0-rc" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.1.0" />
+    <PackageReference Include="TaskBuilder.fs" Version="1.1.1" />
   </ItemGroup>
   
   <ItemGroup>
