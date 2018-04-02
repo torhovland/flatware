@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "blazor-standalone", "blazor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorStandalone", "blazor-standalone\BlazorStandalone\BlazorStandalone.csproj", "{3F21C279-5B56-44A9-AED2-6E0A9794944B}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BlazorStandaloneLib", "blazor-standalone\BlazorStandaloneLib\BlazorStandaloneLib.fsproj", "{1CC58ABC-4FAA-4B91-A56A-9E8BD0F25A86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +19,17 @@ Global
 		{3F21C279-5B56-44A9-AED2-6E0A9794944B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F21C279-5B56-44A9-AED2-6E0A9794944B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F21C279-5B56-44A9-AED2-6E0A9794944B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CC58ABC-4FAA-4B91-A56A-9E8BD0F25A86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CC58ABC-4FAA-4B91-A56A-9E8BD0F25A86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CC58ABC-4FAA-4B91-A56A-9E8BD0F25A86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CC58ABC-4FAA-4B91-A56A-9E8BD0F25A86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3F21C279-5B56-44A9-AED2-6E0A9794944B} = {30F9268D-F0D8-4B5C-8875-2850CCDD2FB0}
+		{1CC58ABC-4FAA-4B91-A56A-9E8BD0F25A86} = {30F9268D-F0D8-4B5C-8875-2850CCDD2FB0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7BA32F90-9000-4C44-BD0F-32C1A2AF93AB}
