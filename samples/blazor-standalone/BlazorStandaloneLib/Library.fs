@@ -24,7 +24,7 @@ type MyAppComponent() =
     inherit FlatwareComponent<Msg, Mdl>()
 
     [<Inject>]
-    member val Http = Unchecked.defaultof<HttpClient> with get, set
+    member val Http = null : HttpClient with get, set
 
     override this.ReduceAsync(msg : Msg, mdl : Mdl) =
         task {
