@@ -7,7 +7,7 @@ open Microsoft.AspNetCore.Blazor.Components
 open FSharp.Control.Tasks
 open Flatware
 
-type Msg =
+type MyMsg =
     | Increment of n : int
     | LoadWeather
 
@@ -17,16 +17,16 @@ type WeatherForecast() =
     member val TemperatureF = 0 with get, set
     member val Summary = "" with get, set
 
-type Mdl = { Count : int; Forecasts : WeatherForecast list } with
-    static member init = { Count = 0; Forecasts = [] }
+type MyMdl = { Count : int; Forecasts : WeatherForecast list } with
+    static member Init = { Count = 0; Forecasts = [] }
 
 type MyAppComponent() =
-    inherit FlatwareComponent<Msg, Mdl>()
+    inherit FlatwareComponent<MyMsg, MyMdl>()
 
     [<Inject>]
     member val Http = null : HttpClient with get, set
 
-    override this.ReduceAsync(msg : Msg, mdl : Mdl) =
+    override this.ReduceAsync(msg : MyMsg, mdl : MyMdl) =
         task {
             match msg with
                 | Increment n -> 

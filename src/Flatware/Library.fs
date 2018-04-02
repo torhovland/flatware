@@ -31,7 +31,9 @@ type FlatwareComponent<'msg, 'mdl>() =
     inherit BlazorComponent()
 
     [<Inject>]
-    member val F = Unchecked.defaultof<FlatwareContainer<'msg, 'mdl>> with get, set
+    member val private F = Unchecked.defaultof<FlatwareContainer<'msg, 'mdl>> with get, set
+
+    member this.Mdl = this.F.Mdl;
 
     // Necessary due to FS0491
     member this.StateHasChanged() =

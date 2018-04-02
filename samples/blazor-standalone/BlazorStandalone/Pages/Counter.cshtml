@@ -4,6 +4,6 @@
 
 <h1>Counter</h1>
 
-<p>Current count: @F.Mdl.Count</p>
+<p>Current count: @Mdl.Count</p>
 
-<button @onclick(() => DispatchAsync(Msg.NewIncrement(3)))>Click me</button>
+<button @onclick(() => DispatchAsync(MyMsg.NewIncrement(3)))>Click me</button>

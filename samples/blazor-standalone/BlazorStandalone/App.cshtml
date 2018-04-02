@@ -11,6 +11,6 @@
     protected override async Task OnInitAsync()
     {
         Console.WriteLine("Dispatching initial message.");
-        await this.DispatchAsync(Msg.LoadWeather);
+        await this.DispatchAsync(MyMsg.LoadWeather);
     }
 }

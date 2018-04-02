@@ -12,7 +12,7 @@ namespace BlazorStandalone
         {
             var serviceProvider = new BrowserServiceProvider(configure =>
             {
-                configure.AddFlatware<Msg, Mdl>(Mdl.init);
+                configure.AddFlatware<MyMsg, MyMdl>(MyMdl.Init);
             });
 
             new BrowserRenderer(serviceProvider).AddComponent<App>("app");
