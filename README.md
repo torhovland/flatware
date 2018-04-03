@@ -20,7 +20,7 @@ Flatware is a state management library for [Blazor](https://github.com/aspnet/Bl
 
 5. In `Library.fs`, add your message type, model types, and your component base class with the reducer logic:
 
-```
+```fsharp
 open System
 open System.Net.Http
 open Microsoft.AspNetCore.Blazor
@@ -60,13 +60,13 @@ type MyAppComponent() =
 
 6. Open `Program.cs` and configure Flatware in the `BrowserServiceProvider`:
 
-```
+```csharp
 configure.AddFlatware<MyMsg, MyMdl>(MyMdl.Init);
 ```
 
 You will need to add
 
-```
+```csharp
 using Flatware;
 using ClassLibrary1;
 ```
