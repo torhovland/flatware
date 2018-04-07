@@ -1,5 +1,7 @@
 # Flatware for Blazor
 
+### OBSOLETE! Flatware has been merged with [Blazor-Redux](https://github.com/torhovland/blazor-redux), which provides an improved design more like Redux, and supports F# and C# equally.
+
 Flatware is a state management library for [Blazor](https://github.com/aspnet/Blazor), similar to [Elm](http://elm-lang.org/) and [Redux](https://redux.js.org/). It has the following features:
 
 - Implements a one-way model-update-view architecture, by many considered to be [more robust and easier to reason about](https://www.exclamationlabs.com/blog/the-case-for-unidirectional-data-flow/) than a two-way data binding as found in Angular. 
